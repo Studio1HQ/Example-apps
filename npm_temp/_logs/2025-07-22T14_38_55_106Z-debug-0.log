@@ -1,0 +1,12 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\Shubhangi Shubhra\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.8.1
+2 info using node@v22.17.0
+3 silly config load:file:C:\Users\Shubhangi Shubhra\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:D:\inventory-management\.npmrc
+5 silly config load:file:C:\Users\Shubhangi Shubhra\.npmrc
+6 silly config load:file:C:\Users\Shubhangi Shubhra\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm run dev
+8 verbose argv "run" "dev"
+9 verbose logfile logs-max:10 dir:D:\inventory-management\npm_temp\_logs\2025-07-22T14_38_55_106Z-
+10 verbose logfile D:\inventory-management\npm_temp\_logs\2025-07-22T14_38_55_106Z-debug-0.log
+11 silly logfile done cleaning log files
