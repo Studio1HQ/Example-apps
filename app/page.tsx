@@ -4,6 +4,7 @@ import { useSetDocument, VeltComments } from "@veltdev/react";
 import React, { useState } from "react";
 import { InventoryTable, InventoryItem } from "@/components/InventoryTable";
 import { FilterDropdowns } from "@/components/FilterDropdowns";
+import { useDarkMode } from "./layout";
 
 
 
@@ -128,6 +129,7 @@ export default function Page() {
   const inventoryData = createInventoryData();
   const [selectedMetric, setSelectedMetric] = useState('Stock quantity');
   const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const { isDarkMode } = useDarkMode();
 
   useSetDocument("inventory-dashboard-main", { documentName: "Inventory Dashboard Discussion" });
 
@@ -136,7 +138,7 @@ export default function Page() {
       <VeltComments
         popoverMode={true}
         customAutocompleteSearch={true}
-
+        darkMode={isDarkMode}
       />
 
       {/* Filter Dropdowns */}

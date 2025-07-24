@@ -19,12 +19,7 @@ export const names = ["Steve", "Elli"];
 export const useUserStore = create<UserStore>()(
   persist(
     (set) => ({
-      user: {
-        uid: "user002",
-        displayName: "Elli",
-        email: "elli@inventory.com",
-        photoUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=Elli"
-      },
+      user: null,
       setUser: (user) => set({ user }),
     }),
     {

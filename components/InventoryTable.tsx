@@ -13,6 +13,7 @@ import {
 import { VeltCommentTool } from '@veltdev/react';
 import { ChevronUp, ChevronDown, Eye } from 'lucide-react';
 import { DetailView } from './DetailView';
+import { useDarkMode } from '@/app/layout';
 
 export interface InventoryItem {
     id: string;
@@ -42,6 +43,7 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMe
     const [globalFilter, setGlobalFilter] = useState('');
     const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
     const [isDetailViewOpen, setIsDetailViewOpen] = useState(false);
+    const { isDarkMode } = useDarkMode();
 
     const handleViewDetails = (item: InventoryItem) => {
         setSelectedItem(item);
@@ -257,6 +259,7 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMe
                                                 <VeltCommentTool
                                                     targetElementId={cellId}
                                                     style={{ width: "16px", height: "16px" }}
+                                                    darkMode={isDarkMode}
                                                 />
                                             </div>
                                         </td>

@@ -6,25 +6,27 @@ import {
   Sun,
   Inbox,
 } from 'lucide-react';
-import { VeltNotificationsTool, VeltCommentsSidebar, VeltSidebarButton } from '@veltdev/react';
+import { VeltNotificationsTool, VeltCommentsSidebar, VeltSidebarButton, useVeltClient } from '@veltdev/react';
 import { names, userIds, useUserStore } from "@/helper/userdb";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useDarkMode } from '@/app/layout';
 
 const Header: React.FC = () => {
   const { user, setUser } = useUserStore();
+  const { client } = useVeltClient();
 
   const predefinedUsers = useMemo(
     () =>
       userIds.map((uid, index) => {
         // Use DiceBear Avatars for demonstration
         const avatarUrls = [
-          "https://api.dicebear.com/7.x/personas/svg?seed=Nancy",
-          "https://api.dicebear.com/7.x/personas/svg?seed=Mary",
+          "https://api.dicebear.com/7.x/avataaars/svg?seed=Steve",
+          "https://api.dicebear.com/7.x/avataaars/svg?seed=Elli",
         ];
         return {
           uid: uid,
           displayName: names[index],
-          email: `${names[index].toLowerCase()}@gmail.com`,
+          email: `${names[index].toLowerCase()}@inventory.com`,
           photoUrl: avatarUrls[index],
         };
       }),
@@ -40,32 +42,42 @@ const Header: React.FC = () => {
     }
   }, [user, setUser, predefinedUsers]);
 
-  // Velt user identification is now handled in VeltInitializer component
+  // Velt user identification - moved from VeltInitializer to header (like google-sheet-comments)
+  useEffect(() => {
+    if (!client || !user) return;
+    const veltUser = {
+      userId: user.uid,
+      organizationId: "inventory-dashboard-new-org",
+      name: user.displayName,
+      email: user.email,
+      photoUrl: user.photoUrl,
+    };
+
+    client.identify(veltUser);
+
+    // Add all predefined users to the organization for mentions (like google-sheet-comments approach)
+    predefinedUsers.forEach(predefinedUser => {
+      if (predefinedUser.uid !== user.uid) {
+        const otherVeltUser = {
+          userId: predefinedUser.uid,
+          organizationId: "inventory-dashboard-new-org",
+          name: predefinedUser.displayName,
+          email: predefinedUser.email,
+          photoUrl: predefinedUser.photoUrl,
+        };
+        // Add other users to make them available for mentions
+        client.identify(otherVeltUser);
+      }
+    });
+  }, [client, user, predefinedUsers]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const { isDarkMode, setIsDarkMode } = useDarkMode();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Initialize dark mode from localStorage
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-      setDarkMode(savedDarkMode);
-
-      const body = document.getElementById('app-body');
-      if (body) {
-        if (savedDarkMode) {
-          body.classList.add('dark');
-        } else {
-          body.classList.remove('dark');
-        }
-      }
-    }
-  }, []);
-
   const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
+    const newDarkMode = !isDarkMode;
+    setIsDarkMode(newDarkMode);
 
     // Apply dark class to body
     const body = document.getElementById('app-body');
@@ -101,7 +113,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Velt Comments Sidebar */}
-      <VeltCommentsSidebar />
+      <VeltCommentsSidebar darkMode={isDarkMode} />
 
       <header className={styles['header-container']}>
         {/* Top Navigation */}
@@ -118,7 +130,7 @@ const Header: React.FC = () => {
           <div className={styles['nav-right']}>
             <div className={styles['action-group']}>
               {/* Velt Notification Tool */}
-              <VeltNotificationsTool />
+              <VeltNotificationsTool darkMode={isDarkMode} />
             </div>
             <div className={styles['button-group']}>
               {/* VeltCommentsSidebar Button */}
@@ -131,19 +143,19 @@ const Header: React.FC = () => {
 
               {/* Theme Toggle */}
               <div
-                className={`${styles['theme-toggle']} ${darkMode ? styles['dark'] : styles['light']}`}
+                className={`${styles['theme-toggle']} ${isDarkMode ? styles['dark'] : styles['light']}`}
                 onClick={toggleDarkMode}
                 title="Toggle dark mode"
               >
                 <div className={styles['theme-toggle-track']}>
                   <div
-                    className={`${styles['theme-toggle-thumb']} ${darkMode ? styles['dark'] : styles['light']}`}
+                    className={`${styles['theme-toggle-thumb']} ${isDarkMode ? styles['dark'] : styles['light']}`}
                     style={{
-                      transform: darkMode ? 'translateX(24px)' : 'translateX(0)',
+                      transform: isDarkMode ? 'translateX(24px)' : 'translateX(0)',
                       transition: 'transform 0.2s',
                     }}
                   >
-                    {darkMode ? (
+                    {isDarkMode ? (
                       <Moon size={16} color="#3887fa" />
                     ) : (
                       <Sun size={16} color="#f6c026" />
