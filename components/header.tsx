@@ -6,14 +6,13 @@ import {
   Sun,
   Inbox,
 } from 'lucide-react';
-import { VeltNotificationsTool, VeltCommentsSidebar, VeltSidebarButton, useVeltClient } from '@veltdev/react';
+import { VeltNotificationsTool, VeltCommentsSidebar, VeltSidebarButton } from '@veltdev/react';
 import { names, userIds, useUserStore } from "@/helper/userdb";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useDarkMode } from '@/app/layout';
 
 const Header: React.FC = () => {
   const { user, setUser } = useUserStore();
-  const { client } = useVeltClient();
 
   const predefinedUsers = useMemo(
     () =>
@@ -42,34 +41,16 @@ const Header: React.FC = () => {
     }
   }, [user, setUser, predefinedUsers]);
 
-  // Velt user identification - moved from VeltInitializer to header (like google-sheet-comments)
+  // Log user changes
   useEffect(() => {
-    if (!client || !user) return;
-    const veltUser = {
-      userId: user.uid,
-      organizationId: "inventory-dashboard-new-org",
-      name: user.displayName,
-      email: user.email,
-      photoUrl: user.photoUrl,
-    };
-
-    client.identify(veltUser);
-
-    // Add all predefined users to the organization for mentions (like google-sheet-comments approach)
-    predefinedUsers.forEach(predefinedUser => {
-      if (predefinedUser.uid !== user.uid) {
-        const otherVeltUser = {
-          userId: predefinedUser.uid,
-          organizationId: "inventory-dashboard-new-org",
-          name: predefinedUser.displayName,
-          email: predefinedUser.email,
-          photoUrl: predefinedUser.photoUrl,
-        };
-        // Add other users to make them available for mentions
-        client.identify(otherVeltUser);
-      }
-    });
-  }, [client, user, predefinedUsers]);
+    if (user) {
+      console.log('User changed to:', {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email
+      });
+    }
+  }, [user]);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { isDarkMode, setIsDarkMode } = useDarkMode();
@@ -190,6 +171,7 @@ const Header: React.FC = () => {
                           key={predefinedUser.uid}
                           className={styles['user-dropdown-item'] + (user.uid === predefinedUser.uid ? ' ' + styles['user-dropdown-item-active'] : '')}
                           onClick={() => {
+                            console.log('Switching user from', user?.displayName, 'to', predefinedUser.displayName);
                             setUser(predefinedUser);
                             setDropdownOpen(false);
                           }}
@@ -208,8 +190,6 @@ const Header: React.FC = () => {
             </div>
           </div>
         </div>
-
-
       </header>
     </>
   );
