@@ -38,6 +38,8 @@ interface InventoryTableProps {
 
 const columnHelper = createColumnHelper<InventoryItem>();
 
+
+
 export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMetric, selectedCategory }) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [globalFilter, setGlobalFilter] = useState('');
@@ -182,7 +184,6 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMe
 
         return filtered;
     }, [data, selectedMetric, selectedCategory]);
-
     const table = useReactTable({
         data: filteredData,
         columns,
@@ -195,6 +196,7 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMe
         },
         onSortingChange: setSorting,
         onGlobalFilterChange: setGlobalFilter,
+        getRowId: (row) => row.id, // Use stable ID from your data
     });
 
     return (
@@ -244,18 +246,30 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMe
                                 key={row.id}
                                 className="hover:bg-gray-50 dark:hover:bg-gray-800 border-b border-gray-300 dark:border-gray-600"
                             >
-                                {row.getVisibleCells().map((cell) => {
-                                    const cellId = `cell-${row.id}-${cell.column.id}`;
+                                {row.getVisibleCells().map((cell, cellIndex) => {
+                                    const cellId = `cell-${row.index}-${cellIndex}`;
                                     return (
                                         <td
                                             key={cell.id}
                                             id={cellId}
                                             data-velt-target-comment-element-id={cellId}
                                             className="relative px-6 py-4 whitespace-nowrap text-sm border-r border-gray-300 dark:border-gray-600 group"
+                                            onMouseEnter={(e) => {
+                                                const commentTool = e.currentTarget.querySelector('.velt-comment-tool');
+                                                if (commentTool) {
+                                                    (commentTool as HTMLElement).style.opacity = '1';
+                                                }
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                const commentTool = e.currentTarget.querySelector('.velt-comment-tool');
+                                                if (commentTool) {
+                                                    (commentTool as HTMLElement).style.opacity = '0';
+                                                }
+                                            }}
                                         >
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                             {/* Velt Comment Tool - positioned in top-right corner */}
-                                            <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                            <div className="velt-comment-tool absolute top-1 right-1 opacity-0 transition-opacity duration-200 z-10">
                                                 <VeltCommentTool
                                                     targetElementId={cellId}
                                                     style={{ width: "16px", height: "16px" }}
