@@ -1,12 +1,11 @@
 "use client";
 
-import { useSetDocument, VeltComments } from "@veltdev/react";
-import React, { useState } from "react";
+import { useSetDocument, VeltComments, useVeltClient } from "@veltdev/react";
+import React, { useEffect, useState } from "react";
 import { InventoryTable, InventoryItem } from "@/components/InventoryTable";
 import { FilterDropdowns } from "@/components/FilterDropdowns";
 import { useDarkMode } from "./layout";
-
-
+import { userIds, names } from "@/helper/userdb";
 
 const createInventoryData = (): InventoryItem[] => {
   return [
@@ -127,11 +126,57 @@ const createInventoryData = (): InventoryItem[] => {
 
 export default function Page() {
   const inventoryData = createInventoryData();
-  const [selectedMetric, setSelectedMetric] = useState('Stock quantity');
-  const [selectedCategory, setSelectedCategory] = useState('All Categories');
+  const [selectedMetric, setSelectedMetric] = useState("Stock quantity");
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const { isDarkMode } = useDarkMode();
+  const { client } = useVeltClient();
 
-  useSetDocument("inventory-dashboard-main", { documentName: "Inventory Dashboard Discussion" });
+  const users = userIds.map((id, index) => {
+    const avatarUrls = [
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Steve",
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Elli",
+    ];
+    return {
+      userId: id,
+      name: names[index],
+      email: `${names[index].toLowerCase()}@inventory.com`,
+      photoUrl: avatarUrls[index],
+    };
+  });
+
+  useSetDocument("inventory-dashboard-main", {
+    documentName: "Inventory Dashboard Discussion",
+  });
+
+  useEffect(() => {
+    if (!client)
+       return;
+
+    const commentElement = client.getCommentElement();
+    const contactElement = client.getContactElement();
+
+    commentElement.enableCustomAutocompleteSearch();
+
+    contactElement.updateContactList(users);
+
+    const subscription = commentElement
+      .on("autocompleteSearch")
+      .subscribe(async (inputData: any) => {
+        if (inputData.type === "contact") {
+          const searchText = inputData.searchText.toLowerCase();
+
+          const filteredUsers = users.filter((user) =>
+            user.name.toLowerCase().includes(searchText)
+          );
+
+          contactElement.updateContactList(filteredUsers, { merge: false });
+        }
+      });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [client]);
 
   return (
     <div className="h-full w-full flex flex-col bg-white dark:bg-gray-900 m-0 p-0">
