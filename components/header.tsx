@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './Header.module.css';
 import {
@@ -34,10 +36,8 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined" && !user) {
-      const storedUser = localStorage.getItem("user-storage");
-      if (!storedUser) {
-        setUser(predefinedUsers[0]);
-      }
+      // Set default user if no user is set
+      setUser(predefinedUsers[0]);
     }
   }, [user, setUser, predefinedUsers]);
 
