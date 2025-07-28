@@ -161,7 +161,7 @@ export default function Page() {
 
     const subscription = commentElement
       .on("autocompleteSearch")
-      .subscribe(async (inputData: any) => {
+      .subscribe(async (inputData: { type: string; searchText: string }) => {
         if (inputData.type === "contact") {
           const searchText = inputData.searchText.toLowerCase();
 
