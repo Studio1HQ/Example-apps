@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from '../components/Sidebar';
 import Header from '../components/header';
+import VeltAuth from '../components/VeltAuth'; // Import the new component
 import { useState, useEffect, createContext, useContext } from 'react';
 
 const inter = Inter({
@@ -52,17 +53,19 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`} id="app-body">
         <DarkModeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
           <VeltProvider apiKey={process.env.NEXT_PUBLIC_VELT_API_KEY || ""}>
-            <div style={{ display: "flex", height: "100vh" }}>
-              {/* Sidebar */}
-              <Sidebar />
-              {/* Main Content */}
-              <main style={{ flex: 1, overflowX: "auto", height: "100vh", margin: 0, padding: 0, display: "flex", flexDirection: "column" }}>
-                <Header />
-                <div style={{ flex: 1, margin: 0, padding: 0, height: "100%" }}>
-                  {children}
-                </div>
-              </main>
-            </div>
+            <VeltAuth>
+              <div style={{ display: "flex", height: "100vh" }}>
+                {/* Sidebar */}
+                <Sidebar />
+                {/* Main Content */}
+                <main style={{ flex: 1, overflowX: "auto", height: "100vh", margin: 0, padding: 0, display: "flex", flexDirection: "column" }}>
+                  <Header />
+                  <div style={{ flex: 1, margin: 0, padding: 0, height: "100%" }}>
+                    {children}
+                  </div>
+                </main>
+              </div>
+            </VeltAuth>
           </VeltProvider>
         </DarkModeContext.Provider>
       </body>
