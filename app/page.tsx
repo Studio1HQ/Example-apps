@@ -184,6 +184,7 @@ export default function Page() {
         popoverMode={true}
         customAutocompleteSearch={true}
         darkMode={isDarkMode}
+        allowedElementIds={["cell"]}
       />
 
       {/* Filter Dropdowns */}
