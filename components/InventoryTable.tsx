@@ -10,7 +10,7 @@ import {
     createColumnHelper,
     SortingState,
 } from '@tanstack/react-table';
-import { VeltCommentTool } from '@veltdev/react';
+import { VeltCommentTool, VeltPresence } from '@veltdev/react';
 import { ChevronUp, ChevronDown, Eye } from 'lucide-react';
 import { DetailView } from './DetailView';
 import { useDarkMode } from '@/app/layout';
@@ -275,6 +275,7 @@ export const InventoryTable: React.FC<InventoryTableProps> = ({ data, selectedMe
                                                     style={{ width: "16px", height: "16px" }}
                                                     darkMode={isDarkMode}
                                                 />
+                                                <VeltPresence />
                                             </div>
                                         </td>
                                     );
