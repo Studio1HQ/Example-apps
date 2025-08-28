@@ -176,7 +176,7 @@ export default function Page() {
     return () => {
       subscription.unsubscribe();
     };
-  }, [client]);
+  }, [client, users]);
 
   return (
     <div className="h-full w-full flex flex-col bg-white dark:bg-gray-900 m-0 p-0">
