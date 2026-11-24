@@ -1,279 +1,122 @@
-# 📦 Modern Inventory Management Dashboard
+<div align="center">
 
-> **Built with Kiro AI IDE** - Build a lightweight internal dashboard for warehouse and logistics teams to track shipment statuses and collaborate on fulfillment issues. Use Tanstack for a data grid showing shipments, status, and ETA, with a detail view for each order. Integrate Velt to enable contextual commenting with tag mentions, reactions, and sidebar filtering for focused discussions on delays or product problems.
+<img src="https://raw.githubusercontent.com/Studio1HQ/Studio1HQ/main/assets/banners/Example-apps.webp" alt="Inventory Dashboard with Velt and Kiro: An inventory data grid with Velt comments, @mentions and notifications" width="100%" />
 
-### 📸 Kiro IDE in Action
+<br />
+<br />
 
-![Kiro IDE Screenshot](./images/kiroIDE.png)
-_Kiro AI IDE interface showing the collaborative development process with real-time code generation and refinement_
+# Inventory Dashboard with Velt and Kiro
 
----
+### An inventory data grid with Velt comments, @mentions and notifications
 
-![Inventory Dashboard Screenshot](./images/kiroIDE.png)
+A Next.js inventory dashboard built with Kiro AI IDE. A TanStack Table grid and detail view get Velt cell comments, @mentions with a custom contact list, a comments sidebar, presence and notifications.
 
-## 🎯 Tutorial Overview
+<br />
 
-This project serves as a complete guide for building a modern inventory management dashboard using cutting-edge technologies and AI-assisted development. Perfect for developers looking to understand how to combine multiple libraries into a cohesive, production-ready application.
+[![Built by Studio1](https://img.shields.io/badge/Built_by_Studio1-f97316?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIiBmaWxsPSJub25lIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTAgMzVDMCAxNi42ODA3IDE0LjA3NDQgMS42NDg0NCAzMiAwLjEyNjk1M1YxNDFINTEuMDUyM0M1Mi40MzA4IDEzNy4zNDQgNTQuNzQ0NiAxMzMuNjg5IDU3Ljk5MzggMTMwLjAzM0M2MS4xNDQ2IDEyNi41MDggNjQuNjg5MiAxMjMuNDQgNjguNjI3NyAxMjAuODI5QzcyLjU2NjIgMTE4LjM0OSA3Ni4zNTY5IDExNi43ODIgODAgMTE2LjEyOVY4Ni43NTQ0Qzc1LjQ3MDggODcuOTI5MiA3MS4zODQ2IDg5LjY5MTkgNjcuNzQxNSA5Mi4wNDE1QzY0IDk0LjUyMjUgNjAuNzUwOCA5Ny40NiA1Ny45OTM4IDEwMC44NTRDNTYuNTM0NSAxMDIuNzIgNTUuMjU0NSAxMDQuNjU5IDU0LjE1MzkgMTA2LjY3MVYwSDEyNUMxNDQuMzMgMCAxNjAgMTUuNjY5OSAxNjAgMzVWMTI1QzE2MCAxNDQuMzMgMTQ0LjMzIDE2MCAxMjUgMTYwSDEyNFYxOEgxMDQuOTQ4QzEwMy41NjkgMjEuNjgxNiAxMDEuMjU1IDI1LjM2MjggOTguMDA2MiAyOS4wNDQ0Qzk0Ljg1NTQgMzIuNTk0MiA5MS4zMTA4IDM1LjY4NDEgODcuMzcyMyAzOC4zMTRDODMuNDMzOCA0MC44MTIgNzkuNjQzMSA0Mi4zODk2IDc2IDQzLjA0NzRWNzIuNjMwNEM4MC41MjkyIDcxLjQ0NzMgODQuNjE1NCA2OS42NzI0IDg4LjI1ODUgNjcuMzA1N0M5MiA2NC44MDc2IDk1LjI0OTIgNjEuODQ5MSA5OC4wMDYyIDU4LjQzMDdDOTkuNDY1NSA1Ni41NTEzIDEwMC43NDUgNTQuNTk4NiAxMDEuODQ2IDUyLjU3MjNWMTYwSDM1QzE1LjY3IDE2MCAwIDE0NC4zMyAwIDEyNVYzNVoiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4K)](https://studio1hq.com)
+[![Built with Velt](https://img.shields.io/badge/Built_with_Velt-141414?style=for-the-badge)](https://velt.dev)
+[![Live demo](https://img.shields.io/badge/Live_demo-1c1917?style=for-the-badge&logo=vercel&logoColor=white)](https://velt-inventory.vercel.app/)
 
-## 🎯 Project Overview
+[Velt docs](https://docs.velt.dev) &nbsp;·&nbsp; [Velt](https://velt.dev) &nbsp;·&nbsp; [More examples](https://github.com/Studio1HQ) &nbsp;·&nbsp; [studio1hq.com](https://studio1hq.com)
 
-This project demonstrates how warehouse and logistics teams can collaborate effectively on inventory management through real-time comments, @mentions, and intelligent filtering. Built as a showcase for combining modern web technologies with AI-powered development workflows using **Kiro IDE**.
+</div>
 
-### ✨ Key Features
+<br />
 
-- 📊 **Interactive Data Grid** - TanStack Table with sorting, filtering, and search
-- 💬 **Real-time Collaboration** - Velt-powered comments with @mentions and notifications
+## Overview
 
-![Details](./images/Discussion.png)
+A modern inventory management dashboard for warehouse and logistics teams, built with Next.js, TanStack Table and [Velt](https://velt.dev) using the Kiro AI IDE. Teams track stock, filter by status and discuss problems in context: comment on a cell, mention a teammate, and review every thread in a sidebar.
 
-- 📱 **Detail Views** - Comprehensive item information modals
-  ![Details](./images/Details.png)
+The README doubles as a tutorial for combining these libraries. The Kiro prompts used to build it are in `docs/kiro-prompts.md`.
 
-- 👥 **Team Mentions** - @steve, @elli for role-based collaboration
-- 🎨 **Modern UI** - Responsive design with dark mode support
-  ![DarkMode](./images/DarkMode.png)
+<p align="center"><img src="./images/Discussion.png" alt="Inventory dashboard with Velt comments" width="100%" /></p>
 
----
+<details>
+<summary>More screenshots</summary>
 
-## 🛠️ Tech Stack & Library Combinations
+<p align="center"><img src="./images/Details.png" alt="Item detail view" width="100%" /></p>
+<p align="center"><img src="./images/DarkMode.png" alt="Dark mode" width="100%" /></p>
+<p align="center"><img src="./images/kiroIDE.png" alt="Kiro IDE building the app" width="100%" /></p>
 
-This project demonstrates the powerful combination of modern web technologies, each chosen for specific capabilities:
+</details>
 
-### **🚀 Core Framework Stack**
+## Features
 
-```json
-{
-  "next": "15.2.2",
-  "react": "19.0.0",
-  "typescript": "^5"
-}
-```
+- **Data grid**: TanStack Table with sorting, filtering and search, and TanStack Virtual for large datasets.
+- **Cell comments**: `VeltCommentTool` in the grid lets users comment on specific items.
+- **@mentions**: A custom contact list (Steve, Warehouse Manager, and Elli, Inventory Specialist) with autocomplete search, set up through the Velt contact element.
+- **Comments sidebar**: `VeltCommentsSidebar` with `VeltSidebarButton` for filtering and reviewing discussions.
+- **Notifications and presence**: `VeltNotificationsTool` and `VeltPresence` in the header.
+- **Detail view**: A modal with full item information.
+- **Filters**: Filter dropdowns and status indicators (in stock, low stock, out of stock).
+- **Dark mode**: Dark theme throughout the interface.
 
-- **Next.js 15.2.2** - Latest React framework with App Router for optimal performance
-- **React 19** - Cutting-edge React features and concurrent rendering
-- **TypeScript** - Full type safety across the entire application
+## Tech stack
 
-### **📊 Data Management Powerhouse**
+| Layer | Tool |
+| --- | --- |
+| Framework | [Next.js](https://nextjs.org/) 15.2 (App Router), [React](https://react.dev/) 19, [TypeScript](https://www.typescriptlang.org/) |
+| Data grid | [TanStack Table](https://tanstack.com/table) v8 and [TanStack Virtual](https://tanstack.com/virtual) |
+| Collaboration | [Velt](https://velt.dev/) (`@veltdev/react`) |
+| UI | [Tailwind CSS](https://tailwindcss.com/) v4, [Radix UI](https://www.radix-ui.com/), [Lucide](https://lucide.dev/) |
+| State | [Zustand](https://zustand-demo.pmnd.rs/) |
+| Dev environment | [Kiro](https://kiro.dev/) AI IDE |
+| Deployment | [Vercel](https://vercel.com/) |
 
-```json
-{
-  "@tanstack/react-table": "^8.21.2",
-  "@tanstack/react-virtual": "^3.13.4"
-}
-```
-
-- **TanStack Table v8** - Advanced table functionality with sorting, filtering, and pagination
-- **TanStack Virtual** - Performance optimization for large datasets
-- **Custom State Management** - Efficient filtering and search implementations
-
-### **🎨 UI & Styling Excellence**
-
-```json
-{
-  "tailwindcss": "^4",
-  "lucide-react": "^0.479.0",
-  "@radix-ui/react-*": "^1.1.x to ^2.2.x"
-}
-```
-
-- **Tailwind CSS** - Utility-first styling with custom design system
-- **Lucide React** - Consistent, modern icon library
-- **Radix UI** - Accessible, unstyled UI primitives
-
-### **💬 Real-time Collaboration**
-
-```json
-{
-  "@veltdev/react": "^4.1.1",
-  "@veltdev/types": "^4.2.0-beta.4"
-}
-```
-
-- **Velt SDK** - Professional-grade collaboration features
-- **Custom @mention System** - Team-based notifications and workflows
-- **Real-time Comments** - Contextual discussions on inventory items
-
-### **⚡ Development & Build Tools**
-
-```json
-{
-  "eslint": "^9",
-  "postcss": "^8",
-  "@types/node": "^20"
-}
-```
-
-- **Kiro AI IDE** - AI-powered development environment
-- **ESLint** - Code quality and consistency enforcement
-- **PostCSS** - Advanced CSS processing and optimization
-
-### **🔗 Why These Libraries Work Together**
-
-1. **Next.js + TanStack Table** = Server-side rendering with client-side interactivity
-2. **TypeScript + Velt SDK** = Type-safe collaboration features
-3. **Tailwind + Radix UI** = Rapid styling with accessibility built-in
-4. **React 19 + TanStack Virtual** = Optimal performance for large datasets
-
----
-
-## 🤖 Built with Kiro AI IDE
-
-This entire project was developed using **Kiro AI IDE**, showcasing how AI-assisted development can accelerate complex application building while maintaining code quality and best practices.
-
-### 🎯 Key Kiro Prompts Used
-
-#### Initial Project Setup
-
-```
-Create a collaborative inventory management dashboard with the following requirements:
-
-SUMMARY: A simple dashboard showing inventory data and allowing internal discussion on stock issues and fulfillment problems.
-
-KEY FEATURES:
-- Data grid with inventory items, status, stock levels
-- Detail view for each record
-- Comments on specific items with @tag mentions
-- Reactions and sidebar filter for discussions
-- Focus on inventory management rather than shipment tracking
-
-TECH STACK:
-- TanStack Table for data grid
-- Next.js with TypeScript
-- Velt comments and notifications for collaboration
-- Modern UI with responsive design
-
-USE CASE: Shows how warehouse and logistics teams can comment on low stock items, supplier issues, and inventory problems collaboratively. Team members should be able to @mention each other (like @steve @elli) to coordinate restocking and resolve inventory issues.
-
-Make it professional and production-ready with proper error handling and TypeScript compliance.
-```
-
-#### UI Enhancement Prompt
-
-```
-Remove Discussions and reactions section from side bar
-make UI attractive
-remove these blue colors looks overwhelming make rest components shorter and professional here
-make stock threshold components little color full cant see entire close and edit buttons
-```
-
-### 🔄 AI-Assisted Development Journey
-
-The development process with Kiro demonstrated:
-
-1. **🎯 Requirement Understanding** - Kiro translated business needs into technical specifications
-2. **🔧 Multi-Library Integration** - Seamlessly combined TanStack Table, Velt SDK, Next.js, and Tailwind
-3. **🎨 UI/UX Refinement** - Iterative design improvements based on visual feedback
-4. **🐛 Problem Solving** - Resolved complex issues like modal visibility and component conflicts
-5. **📱 Responsive Design** - Automatic mobile-first approach with professional styling
-6. **⚡ Performance Optimization** - Implemented virtualization and efficient state management
-
-## 🚀 Getting Started
+## Getting started
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 18 or newer
 - npm or yarn
-- Velt API key (for collaboration features)
+- A Velt API key from the [Velt console](https://console.velt.dev)
 
 ### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/Studio1HQ/Example-apps.git
 cd Example-apps
-
-# Install dependencies
 npm install
+```
 
-# Start the development server
+### Environment variables
+
+Create a `.env.local` file in the project root.
+
+| Variable | Description |
+| --- | --- |
+| `NEXT_PUBLIC_VELT_API_KEY` | Your Velt API key, from the [Velt console](https://console.velt.dev). |
+
+### Run
+
+```bash
 npm run dev
-
 ```
 
-### Environment Setup
+Open [http://localhost:3000](http://localhost:3000). Other scripts: `npm run build`, `npm run start`, `npm run lint`. To deploy, run `vercel --prod` with the Vercel CLI.
 
-```env
-NEXT_PUBLIC_VELT_API_KEY=your_velt_api_key_here
-```
+## How it works
 
----
-
-## 📋 Project Structure
-
-```
-├── app/                    # Next.js App Router
-│   ├── page.tsx           # Main dashboard page
-│   ├── layout.tsx         # Root layout
-│   ├── globals.css        # Global styles
-│   └── favicon.ico        # App icon
-├── components/            # React components
-│   ├── InventoryTable.tsx # Main data grid
-│   ├── DetailView.tsx     # Item detail modal
-│   ├── Sidebar.tsx        # Navigation sidebar
-│   ├── header.tsx         # Top navigation header
-│   ├── FilterDropdowns.tsx # Filter components
-│   ├── Header.module.css  # Header styles
-│   ├── Sidebar.module.css # Sidebar styles
-│   └── ui/                # Reusable UI components
-├── helper/               # Utilities
-│   └── userdb.ts         # User management
-├── lib/                  # Shared libraries
-│   └── utils.ts          # Utility functions
-├── types/                # TypeScript definitions
-│   └── delivery.ts       # Data models
-├── utils/                # Helper functions
-│   ├── delivery-transform.ts # Data transformation
-│   └── delivery-validation.ts # Data validation
-├── images/               # Screenshots and assets
-├── docs/                 # Documentation
-│   └── kiro-prompts.md   # AI prompts used
-└── public/               # Static assets
-```
-
----
-
-## 👥 Team Collaboration Features
-
-### @Mention System
-
-The dashboard includes a comprehensive @mention system for team coordination:
+`app/page.tsx` sets the Velt document to `inventory-dashboard-main`, loads the user list into Velt's contact element and enables custom autocomplete search. When a user types an @mention, the `autocompleteSearch` event filters the team list by name:
 
 ```typescript
-// Available team members
-const teamMembers = [
-  { name: "Steve", role: "Warehouse Manager" },
-  { name: "Elli", role: "Inventory Specialist" },
-];
+const commentElement = client.getCommentElement();
+const contactElement = client.getContactElement();
+
+commentElement.enableCustomAutocompleteSearch();
+contactElement.updateContactList(users);
+
+commentElement.on("autocompleteSearch").subscribe((inputData) => {
+  if (inputData.type === "contact") {
+    contactElement.updateContactList(
+      users.filter((u) => u.name.toLowerCase().includes(inputData.searchText.toLowerCase())),
+      { merge: false }
+    );
+  }
+});
 ```
 
-### Usage Examples
-
-- `@steve can you check this low stock item?`
-- `@alex please coordinate with supplier for restock`
-- `@jordan analyze this inventory trend`
-- `@elli update the stock levels for this item`
-
----
-
-## 🎨 UI/UX Highlights
-
-### Responsive Design
-
-- **Desktop-first** approach with mobile optimization
-- **Sidebar navigation** with collapsible categories
-- **Modal overlays** for detailed item views
-- **Dark mode support** throughout the interface
-
-### Interactive Elements
-
-- **Hover effects** on table rows and buttons
-- **Loading states** for async operations
-- **Visual feedback** for filter selections
-- **Smooth transitions** between states
-
----
-
-## 📊 Sample Data Structure
+Sample inventory items use this shape:
 
 ```typescript
 interface InventoryItem {
@@ -292,145 +135,55 @@ interface InventoryItem {
 }
 ```
 
----
-
-## 🎯 Use Cases & Scenarios
-
-### 1. Low Stock Management
-
-- **Alert System**: Visual indicators for items below minimum threshold
-- **Team Coordination**: @mention warehouse managers for restocking
-- **Supplier Communication**: Track reorder status and delivery dates
-
-### 2. Inventory Discussions
-
-- **Cell-level Comments**: Comment on specific data points
-- **Issue Tracking**: Mark problems as resolved/unresolved
-- **Knowledge Sharing**: Document solutions for future reference
-
-### 3. Cross-team Collaboration
-
-- **Role-based Mentions**: Target specific team members by expertise
-- **Filter by Discussions**: Find items with active conversations
-- **Priority Management**: Use reactions to mark urgent items
-
----
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
+```text
+├── app/                     # page.tsx (dashboard, Velt setup), layout.tsx
+├── components/
+│   ├── InventoryTable.tsx   # Main data grid
+│   ├── DetailView.tsx       # Item detail modal
+│   ├── Sidebar.tsx          # Navigation sidebar
+│   ├── header.tsx           # Presence, notifications, sidebar button
+│   ├── FilterDropdowns.tsx  # Filters
+│   ├── VeltAuth.tsx         # Identify the user
+│   └── ui/                  # Reusable UI components
+├── helper/userdb.ts         # Users
+├── types/delivery.ts        # Data models
+├── utils/                   # Data transform and validation
+├── docs/kiro-prompts.md     # Prompts used with Kiro
+└── images/                  # Screenshots
 ```
 
-## 🤝 Contributing
+The project came from this brief to Kiro: build a lightweight internal dashboard for warehouse and logistics teams to track shipment statuses, with a TanStack data grid and detail view, and Velt for contextual comments with tag mentions, reactions and sidebar filtering. A second prompt trimmed the UI.
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Use cases it covers: low stock management with @mentions to warehouse managers, cell-level discussions with resolved and unresolved state, and filtering items by active discussions.
 
----
+## Resources
 
-## 📝 License
+- [Velt documentation](https://docs.velt.dev): SDK guides and API reference.
+- [Velt](https://velt.dev): Product site.
+- [Kiro](https://kiro.dev/): AI IDE used to build the project.
+- [TanStack Table](https://tanstack.com/table): Data grid docs.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📚 Tutorial Sections
-
-This README serves as a comprehensive tutorial covering:
-
-### 🏗️ **Part 1: Project Architecture**
-
-- Setting up Next.js 15 with TypeScript
-- Configuring TanStack Table for complex data operations
-- Integrating Velt SDK for real-time collaboration
-
-### 🎨 **Part 2: UI Development**
-
-- Building responsive layouts with Tailwind CSS
-- Creating professional modals and overlays
-- Implementing dark mode and accessibility features
-
-### 💬 **Part 3: Collaboration Features**
-
-- Setting up @mention systems
-- Real-time commenting on data rows
-- Team-based notification workflows
-
-### ⚡ **Part 4: Performance Optimization**
-
-- Implementing virtualization for large datasets
-- Optimizing re-renders with React 19 features
-- Bundle optimization and deployment strategies
-
----
-
-## 🎯 Learning Outcomes
-
-After following this tutorial, you'll understand:
-
-- ✅ How to combine multiple complex libraries effectively
-- ✅ AI-assisted development workflows with Kiro IDE
-- ✅ Building production-ready collaborative applications
-- ✅ Modern React patterns and performance optimization
-- ✅ Professional UI/UX design principles
-- ✅ TypeScript best practices in large applications
-
----
-
-## 🚀 Quick Start for Tutorial
-
-```bash
-# Clone and setup
-git clone <repository-url>
-cd inventory-management-dashboard
-npm install
-
-# Environment setup
-echo "NEXT_PUBLIC_VELT_API_KEY=your_key_here" > .env.local
-
-# Start development
-npm run dev
-```
-
----
-
-## 🙏 Acknowledgments & Credits
-
-- **🤖 Kiro AI IDE** - Primary development environment that made this project possible
-- **💬 Velt** - Collaboration infrastructure and real-time features
-- **📊 TanStack** - Powerful data management and virtualization
-- **⚡ Vercel** - Deployment platform and Next.js ecosystem
-- **🎨 Tailwind Labs** - CSS framework and design system
-
----
-
-## 📞 Tutorial Support
-
-- **📖 Full Tutorial**: Available as blog post series
-- **💻 Live Demo**: [View the completed application](https://your-demo-url.vercel.app)
-- **🎥 Video Walkthrough**: Coming soon on YouTube
-- **💬 Community**: Join our Discord for questions and discussions
+<br />
 
 ---
 
 <div align="center">
 
-### **🎓 Built as Educational Content**
+<a href="https://studio1hq.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Studio1HQ/website/main/brand/studio1-logo-on-dark.svg" />
+    <img src="https://raw.githubusercontent.com/Studio1HQ/website/main/brand/studio1-logo-on-light.svg" alt="Studio1" width="160" />
+  </picture>
+</a>
 
-**This project demonstrates the power of AI-assisted development with Kiro IDE**
+Built by **[Studio1](https://studio1hq.com)**, the technical content and DevRel partner for devtool teams. Made with [Velt](https://velt.dev).<br />
+Browse more open-source examples at [github.com/Studio1HQ](https://github.com/Studio1HQ).
 
-_Perfect for developers learning modern React patterns, collaboration features, and professional UI development_
+[![Website](https://img.shields.io/badge/studio1hq.com-0b0807?style=for-the-badge&logo=googlechrome&logoColor=white)](https://studio1hq.com)
+[![Book a call](https://img.shields.io/badge/Book_a_strategy_call-f97316?style=for-the-badge&logo=googlecalendar&logoColor=white)](https://cal.com/studio1/collab)
+[![X](https://img.shields.io/badge/%40Studio1HQ-141414?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Studio1HQ)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/studio1hq/)
 
----
-
-**⭐ Star this repository if you found the tutorial helpful!**
+<sub><a href="https://studio1hq.com">studio1hq.com</a> · Technical content, docs, video and DevRel for devtools</sub>
 
 </div>
